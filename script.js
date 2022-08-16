@@ -8,8 +8,8 @@ for(i = 0; i < 256; i++)
     cells.classList.add("cell")
 
 }
-
 makeBlack();
+
 let numInput = document.getElementById("numInput");
 numInput.addEventListener("input", (e) => {
     if(e.target.value > 100) {
