@@ -1,5 +1,6 @@
 let grid = document.getElementById("grid");
-
+let penColor = "";
+let randomColor = document.getElementById("randomcolor");
 for(i = 0; i < 256; i++)
 {
     let cells = document.createElement("div");
@@ -9,7 +10,6 @@ for(i = 0; i < 256; i++)
 }
 
 makeBlack();
-
 let numInput = document.getElementById("numInput");
 numInput.addEventListener("input", (e) => {
     if(e.target.value > 100) {
@@ -32,11 +32,31 @@ numInput.addEventListener("input", (e) => {
     makeBlack();
 });
 
+randomColor.addEventListener("click", () => {
+    let item = document.querySelectorAll(".cell");
+    item.forEach(cell => {
+        cell.addEventListener("mouseover", () => {
+            let color = getRandomColor();
+            penColor = color;
+        });
+    });
+})
+
 function makeBlack() {
     let item = document.querySelectorAll(".cell");
     item.forEach(cell => {
+        penColor = "black"
     cell.addEventListener("mouseover", (e) => {
-        e.target.style.backgroundColor = "black";
+        e.target.style.backgroundColor = penColor;
     });
 })
+}
+
+function getRandomColor() {
+    let string = "#";
+    let chars = ["a", "b", "c", "d", "e", "f", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    for(let i = 0; i < 6; i++) {
+        string += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return string;  
 }
