@@ -1,3 +1,19 @@
+h1 {
+    text-align: center;
+}
+#container {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#settings-container {
+    padding: 20px;
+}
+
 #grid {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
@@ -9,4 +25,10 @@
 .cell
 {
     border: 1px solid black;
+}
+
+button {
+    cursor: pointer;
+    background-color: aqua;
+    border: 2px solid black;
 }
