@@ -1,6 +1,7 @@
 let grid = document.getElementById("grid");
-let penColor = "";
 let randomColor = document.getElementById("randomcolor");
+let blackColor = document.getElementById("blackcolor");
+
 for(i = 0; i < 256; i++)
 {
     let cells = document.createElement("div");
@@ -29,27 +30,39 @@ numInput.addEventListener("input", (e) => {
         grid.style.gridTemplateColumns = `repeat(${e.target.value}, 1fr)`;
         grid.style.gridTemplateRows = `repeat(${e.target.value}, 1fr)`
     }
-    makeBlack();
+    if(blackColor.classList.contains("toggle")) makeBlack();
+    if(randomColor.classList.contains("toggle")) makeColor();
 });
 
 randomColor.addEventListener("click", () => {
-    let item = document.querySelectorAll(".cell");
-    item.forEach(cell => {
-        cell.addEventListener("mouseover", () => {
-            let color = getRandomColor();
-            penColor = color;
-        });
-    });
+    randomColor.classList.add("toggle");
+    blackColor.classList.remove("toggle");
+    makeColor();
 })
+
+blackColor.addEventListener("click", () => {
+    blackColor.classList.add("toggle");
+    randomColor.classList.remove("toggle")
+    makeBlack();
+});
 
 function makeBlack() {
     let item = document.querySelectorAll(".cell");
     item.forEach(cell => {
-        penColor = "black"
-    cell.addEventListener("mouseover", (e) => {
-        e.target.style.backgroundColor = penColor;
-    });
+        cell.addEventListener("mouseover", (e) => {
+            e.target.style.backgroundColor = "black";
+        });
 })
+}
+
+function makeColor() {
+    let item = document.querySelectorAll(".cell");
+    item.forEach(cell => {
+        cell.addEventListener("mouseover", (e) => {
+            let color = getRandomColor();
+            e.target.style.backgroundColor = color;
+        });
+    });
 }
 
 function getRandomColor() {
